@@ -11,6 +11,9 @@ public class TimeManager : MonoBehaviour
     float totalTime = 0;
     float currentTime = 0;
 
+    public float nightDuration = .4f;
+    public float sunriseHour = 6;
+
 
     // Update is called once per frame
     void Update()
@@ -49,5 +52,9 @@ public class TimeManager : MonoBehaviour
         if (hour == 0) hour = 12;
 
         return hour.ToString("00") + ":" + Mathf.FloorToInt(GetMinutes()).ToString("00") + " " + abbreviation;
+    }
+    public float GetSunsetHour()
+    {
+        return (sunriseHour + (1 - nightDuration) * hoursInDay) % hoursInDay;
     }
 }
